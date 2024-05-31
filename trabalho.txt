@@ -1,0 +1,65 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+#define TAMANHO_VETOR 6
+#define LIMITE_SUPERIOR 60
+
+// Função para verificar se um número já existe no vetor
+int existeNoVetor(int vetor[], int tamanho, int numero) {
+    for (int i = 0; i < tamanho; i++) {
+        if (vetor[i] == numero) {
+            return 1;
+        }
+    }
+    return 0;
+}
+// Função para preencher o vetor com números aleatórios distintos
+void preencherVetor(int vetor[]) {
+    srand(time(NULL)); // Inicializa a semente do gerador de números aleatórios
+    int i = 0;
+    while (i < TAMANHO_VETOR) {
+        int numero = rand() % LIMITE_SUPERIOR + 1; // Gera um número aleatório entre 1 e LIMITE_SUPERIOR
+
+        // Verifica se o número já existe no vetor
+        if (!existeNoVetor(vetor, i, numero)) {
+            vetor[i] = numero;
+            i++;
+        }
+    }
+}
+// Função para ordenar o vetor em ordem crescente
+void ordenarVetor(int vetor[]) {
+    for (int i = 0; i < TAMANHO_VETOR - 1; i++) {
+        for (int j = 0; j < TAMANHO_VETOR - i - 1; j++) {
+            if (vetor[j] > vetor[j + 1]) {
+                // Troca os elementos de posição se estiverem fora de ordem
+                int temp = vetor[j];
+                vetor[j] = vetor[j + 1];
+                vetor[j + 1] = temp;
+            }
+        }
+    }
+}
+// Função para exibir o vetor
+void exibirVetor(int vetor[]) {
+    printf("Os numeros sorteados e ordenados sao: ");
+    for (int i = 0; i < TAMANHO_VETOR; i++) {
+        printf("%d ", vetor[i]);
+    }
+    printf("\n");
+}
+int main() {
+    int numeros[TAMANHO_VETOR];
+
+    // Preenche o vetor com números aleatórios distintos
+    preencherVetor(numeros);
+
+    // Ordena o vetor em ordem crescente
+    ordenarVetor(numeros);
+
+    // Exibe o vetor para o usuário
+    exibirVetor(numeros);
+
+    return 0;
+}
