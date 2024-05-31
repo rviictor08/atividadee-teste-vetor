@@ -1,3 +1,6 @@
+///// trabalho feito por REPLIT como teste. Usando bloco de notas para armazenar as informaçoes.
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
